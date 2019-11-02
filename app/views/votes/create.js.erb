@@ -1,0 +1,4 @@
+#var value = $("#votes-comment-<%= @comment.id%>").text();
+#$("#votes-comment-<%= @comment.id%>").text(parseInt(value) + 1);
+
+$("#comment-<%= @comment.id%>").html("<%= j render @comment %>")

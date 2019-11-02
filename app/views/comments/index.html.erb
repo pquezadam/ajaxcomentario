@@ -1,0 +1,41 @@
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-_U6165DVeM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<%= form_with model: Comment.new do |f| %>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    <%= f.submit :enviar %>
+<% end %>
+
+<form action="<%= comments_path %>">
+    <input name="q">
+</form>
+
+<div id="comments">
+<table> 
+<tbody> 
+    <% @comments.each do |comment| %> 
+        <%= render comment %>
+    <% end %>    
+</tbody> 
+</table>
+</div>
+
+<script>
+    $("[name=q]").keyup(function(event) {
+        $.ajax({
+            url: '<%= comments_path %>',
+            type: 'GET',
+            dataType: 'script',
+            data: {q: $(this).val()}
+        })
+        .done(function() {
+            console.log("success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    });
+</script>

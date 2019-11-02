@@ -1,0 +1,5 @@
+<div id="comment-<%= comment.id%>">
+    <%= comment.content %>
+    <small id="votes-comment-<%= comment.id%>"> <%= link_to comment.votes.count, comment_votes_path(comment), method: :post, remote: true %> </small> 
+    
+</div>
